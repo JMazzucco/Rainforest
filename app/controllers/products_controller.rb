@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
 
   def show
   	@product = Product.find(params[:id])
+    session[:most_recent_product] = @product.id
+      if current_user
+          @review = @product.reviews.build
+      end
   end
 
   def new
